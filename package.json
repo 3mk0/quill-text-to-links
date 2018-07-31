@@ -11,7 +11,10 @@
   "license": "GPL",
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "is-whitespace": "^0.3.0"
+    "email-regex": "^3.0.0",
+    "normalize-url": "^3.2.0",
+    "parse-domain": "^2.1.2",
+    "url-regex": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

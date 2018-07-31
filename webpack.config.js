@@ -3,8 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        "textToLinks": "./src/index.js",
-        "textToLinks.min": "./src/index.js"
+        "textToLinks": "./src/index.js"
+        // "textToLinks.min": "./src/index.js"
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -30,10 +30,4 @@ module.exports = {
             }]
         }]
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            include: /\.min\.js$/,
-            minimize: false
-        })
-    ]
 };
