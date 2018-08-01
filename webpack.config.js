@@ -1,10 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     entry: {
-        "textToLinks": "./src/index.js"
-        // "textToLinks.min": "./src/index.js"
+        "textToLinks.min": "./src/index.js",
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -16,7 +16,7 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             include: path.join(__dirname, 'src'),
-            exclude: /(node_modules|bower_components)/,
+            exclude: /node_modules/,
             use: [{
                 loader: 'babel-loader',
                 options: {
@@ -30,4 +30,10 @@ module.exports = {
             }]
         }]
     },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            include: /\.min\.js$/,
+            minimize: true
+        })
+    ]
 };

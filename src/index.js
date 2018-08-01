@@ -29,8 +29,6 @@
 
 import parseDomain from 'parse-domain'
 import normalizeUrl from 'normalize-url'
-import urlRegex from 'url-regex';
-import emailRegex from 'email-regex'
 
 export default class TextToLinks {
   constructor (quill, options) {
