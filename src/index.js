@@ -1,8 +1,6 @@
 // Quill.js Plugin - Auto convert urls & emails to links
 // This is a module for the Quill.js WYSIWYG editor (https://quilljs.com/)
 //
-// v0.0.1
-//
 // Author: 3mk0 (mk@devshell.com)
 //
 // Code based on https://github.com/patleeman/quill-markdown-shortcuts
@@ -41,12 +39,13 @@ export default class TextToLinks {
         action: (text, selection, pattern) => {
           const startIndex = text.search(pattern)
           const matchedText = text.match(pattern)[0]
-          const hrefText = parseDomain(matchedText)['domain']
+          const url = parseDomain(matchedText)
+          const hrefText = url.subdomain.length && url.subdomain !== 'www' ? url.subdomain + '.' + url.domain + '.' + url.tld : url.domain + '.' + url.tld
           const start = selection.index - matchedText.length - 1
           if (startIndex !== -1) {
             setTimeout(() => {
               this.quill.deleteText(start, matchedText.length)
-              this.quill.insertText(start, hrefText, 'link', normalizeUrl(matchedText))
+              this.quill.insertText(start, hrefText, 'link', normalizeUrl(matchedText, {stripWWW: false}))
             }, 0)
           }
         }
